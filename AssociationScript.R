@@ -1,5 +1,5 @@
 #Ekplorasi dan pra - proses
-bank <- read.csv("F:/BACKUP/DOWNLOAD 1/Sem 6 BISMILLAH/PDT/Tugas 3/AssociationScript/bank.csv")
+bank <- read.csv("Bank Marketing.csv")
 View(bank)
 
 library(dplyr)
@@ -65,6 +65,10 @@ ruledf = data.frame(
 head(ruledf)
 summary(ruledf)
 
+###Apply gini ke rules####
+quality(rules_bank_2) <- cbind(quality(rules_bank_2), 
+                               gini = interestMeasure(rules_bank_2, measure = "gini", 
+                                                      transactions = bank))
 
 rules_bank_2.sorted <- sort(rules_bank_2, by="support")
 rules_bank_2.sorted
